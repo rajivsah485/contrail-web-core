@@ -1231,6 +1231,5 @@ define(['underscore'], function (_) {
             xmlNode.removeAttribute(attrArray[i]);
         }
     };
-
     return CoreUtils;
 });

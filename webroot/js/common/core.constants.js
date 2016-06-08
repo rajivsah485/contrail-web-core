@@ -56,7 +56,7 @@ define([
 
         this.TMPL_2ROW_CONTENT_VIEW = "core-2-row-content-template";
         this.TMPL_2COLUMN_1ROW_2ROW_CONTENT_VIEW = "core-2-column-1-row-2row-content-template";
-
+        this.JSON_EDITOR_TEMPLATE = "json-editor-template";
         this.TMPL_ACCORDIAN_VIEW = "core-accordian-view-template";
         this.TMPL_INPUT_VIEW = "core-input-view-template";
         this.TMPL_EDITABLE_GRID_INPUT_VIEW = "core-editable-grid-input-view-template";
@@ -127,6 +127,10 @@ define([
         this.TMPL_CHARTINFO = "barchart-info-template";
         this.TMPL_DASHBOARD_STATS = "dashboard-stats";
         this.TMPL_INFRA_DASHBOARD = "mon-infra-dashboard";
+        this.TMPL_CONFIG_JSON_LSIT = "config-browser-list-container";
+        this.TMPL_CONFIG_HREF = "config-browser-href-container";
+        this.TMPL_CONFIG_BROWSER_DATA = "config-browser-dashboard";
+        this.CONFIG_BROWSER_LAYOUT = "config-browser-layout";
         this.DASHBOARD_ALERTS_GRID_SECTION_ID = "infra-dashboard-alerts-section";
         this.DASHBOARD_ALERTS_GRID_ID = "infra-dashboard-alerts-grid";
         this.DASHBOARD_ALERTS_GRID_TITLE = "Alerts";

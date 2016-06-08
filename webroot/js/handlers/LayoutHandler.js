@@ -5,7 +5,6 @@
 define(['underscore', 'menu-handler', 'content-handler'], function (_, MenuHandler, ContentHandler) {
     var LayoutHandler = function () {
         var self = this;
-
         //Don't escape ":[]" characters while pushing state via bbq
         $.param.fragment.noEscape(":[]");
 
@@ -53,7 +52,18 @@ define(['underscore', 'menu-handler', 'content-handler'], function (_, MenuHandl
             var urlHash = $.bbq.getState('q');
             return ifNull(urlHash, {});
         };
-
+        this.handleConfigBrowserNavigation = function(href, pageType){
+            var cbHref = encodeURIComponent(href);
+            contrail.setCookie('configBrowserHref', cbHref);
+            var currentHashObj = layoutHandler.getURLHashObj();
+            loadFeature({p: currentHashObj['p'], q: {'configLevel': pageType}});
+        };
+        this.handleConfigBrowserJson = function(href, level){
+            var cbHref = encodeURIComponent(href);
+            contrail.setCookie('configBrowserHref', cbHref);
+            var currentHashObj = layoutHandler.getURLHashObj();
+            loadFeature({p: currentHashObj['p'], q: {'configLevel': level}});
+        }
         /** Sets the vaue of 'q' in urlHash */
         this.setURLHashParams = function (hashParams, obj) {
             var merge = true, triggerHashChange = true;

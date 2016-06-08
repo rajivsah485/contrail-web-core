@@ -333,3 +333,25 @@ Handlebars.registerHelper ('truncate', function (str, len) {
     }
     return str;
 });
+
+Handlebars.registerHelper('formatConfigBrowserData', function(jsonObject) {
+    var ret = '';
+    for (var i = 0 ; i < jsonObject.length ; i = i+3) {
+        ret = ret + '<div class="body" style="padding-left: 27px;padding-bottom: 10px;">\
+            <div class="row-fluid">\
+                <div class="name span4 word-break-all">\
+                    <span class="hyperlink" onclick=javascript:layoutHandler.handleConfigBrowserNavigation("'+jsonObject[i]['href']+'","jsonList")>' +jsonObject[i]['name']+ '</span>\
+                 </div>\
+                 <div class="name span4 word-break-all">\
+                 <span class="hyperlink" onclick=javascript:layoutHandler.handleConfigBrowserNavigation("'+jsonObject[i+1]['href']+'","jsonList")>' +jsonObject[i+1]['name']+ '</span>\
+                  </div>\
+                  <div class="name span4 word-break-all">\
+                  <span class="hyperlink" onclick=javascript:layoutHandler.handleConfigBrowserNavigation("'+jsonObject[i+2]['href']+'","jsonList")>' +jsonObject[i+2]['name']+ '</span>\
+                   </div>\
+             </div>\
+          </div>\
+      </div>';
+        
+    }
+    return ret;
+});

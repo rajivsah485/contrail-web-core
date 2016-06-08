@@ -78,6 +78,8 @@ function getCoreAppPaths(coreBaseDir, coreBuildDir, env) {
             'contrail-load'             : coreWebDir + '/js/contrail-load',
             'analyzer-utils'            : coreWebDir + "/js/analyzer-utils",
             // 'dashboard-utils'           : "js/dashboard-utils",
+            //third party tool for config browser
+            'json-editor'               : coreWebDir + '/assets/json-editor/jsoneditor',
 
             'knockout'                    : coreWebDir + '/assets/knockout/knockout-3.0.0',
             'joint'                       : coreWebDir + '/assets/joint/js/joint.clean',
@@ -188,6 +190,7 @@ function getCoreAppPaths(coreBaseDir, coreBuildDir, env) {
             'joint.layout.DirectedGraph'  : coreWebDir + '/assets/joint/js/joint.layout.DirectedGraph',
             'joint'                       : coreWebDir + '/assets/joint/js/joint.clean',
             'joint.contrail'              : coreWebDir + '/js/joint.contrail',
+            'json-editor'                 : coreWebDir + '/assets/json-editor/jsoneditor',
 
             'core-alarm-utils'           :  coreWebDir + '/js/common/core.alarms.utils',
             'core-alarm-parsers'         :  coreWebDir + '/js/common/core.alarms.parsers'

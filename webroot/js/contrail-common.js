@@ -223,7 +223,14 @@ function Contrail() {
 
         return '<pre class="pre-format-JSON2HTML">' + formatJsonObject(json, formatDepth, 0, ignoreKeys) + '</pre>';
     };
-    
+
+    this.formatConfigBrowserJSON2HTML = function(json, formatDepth, hrefClick, ignoreKeys){
+        if(typeof json == 'string'){
+            json = JSON.parse(json);
+        }
+
+        return '<pre class="pre-format-JSON2HTML">' + formatConfigBrowserJsonObject(json, formatDepth, 0, hrefClick, ignoreKeys) + '</pre>';
+    };
     this.isItemExists = function(value, data){
         var isThere = false;
         for(var i = 0; i < data.length; i++) {
@@ -291,5 +298,45 @@ function Contrail() {
 		}
 		return output;
     };
+    function formatConfigBrowserJsonObject(jsonObj, formatDepth, currentDepth, hrefClick, ignoreKeys) {
+        var output = '',
+            objType = {type: 'object', startTag: '{', endTag: '}'};
+        
+        if(jsonObj instanceof Array){
+            objType = {type: 'array', startTag: '[', endTag: ']'};
+        }
+        
+        if(formatDepth == 0){
+            output += '<i class="node-' + currentDepth + ' icon-plus expander"></i> ' + objType.startTag + '<ul data-depth="' + currentDepth + '" class="node-' + currentDepth + ' node hide raw">' + 
+                        JSON.stringify(jsonObj) + '</ul><span class="node-' + currentDepth + ' collapsed expander"> ... </span>' + objType.endTag;
+        }
+        else {
+            output += '<i class="node-' + currentDepth + ' icon-minus collapser"></i> ' + objType.startTag + '<ul data-depth="' + currentDepth + '" class="node-' + currentDepth + ' node">';
+            $.each(jsonObj, function(key, val){
+                if (!contrail.checkIfExist(ignoreKeys) || (contrail.checkIfExist(ignoreKeys) && ignoreKeys.indexOf(key) === -1)) {
+                    if (objType['type'] == 'object') {
+                        output += '<li class="key-value"><span class="key">' + key + '</span>: ';
+                    }
+                    else {
+                        output += '<li class="key-value">';
+                    }
+
+                    if (val != null && typeof val == 'object') {
+                        output += '<span class="value">' + formatConfigBrowserJsonObject(val, formatDepth - 1, currentDepth + 1, hrefClick) + '</span>';
+                    }
+                    else {
+                        if(hrefClick && key === 'href'){
+                            output += '<span class="hyperlink value ' + typeof val + '" onclick=javascript:layoutHandler.handleConfigBrowserJson("' + val +'","configDetail11")>' + val + '</span>';
+                        }else{
+                            output += '<span class="value ' + typeof val + '">' + val + '</span>';
+                        }
+                    }
+                    output += '</li>';
+                }
+            });
+            output += '</ul><span class="node-' + currentDepth + ' collapsed hide expander"> ... </span>' + objType.endTag;
+        }
+       return output;
+   };
 };
 
