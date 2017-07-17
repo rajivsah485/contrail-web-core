@@ -289,10 +289,26 @@ define([
 
             while (pathArray.length) {
                 var property = pathArray.shift();
-                if (obj != null && property in obj) {
-                    obj = obj[property];
-                } else {
-                    return '-';
+                if(obj != null){
+                    if(obj.constructor !== Array){
+                        if (obj != null && property in obj) {
+                            obj = obj[property];
+                        } else {
+                            return '-';
+                        }
+                    }else{
+                        if (obj[0] != null && property in obj[0]) {
+                            obj = obj[0][property];
+                        } else {
+                            return '-';
+                        }
+                    }
+                }else{
+                    if (obj != null && property in obj) {
+                        obj = obj[property];
+                    } else {
+                        return '-';
+                    }
                 }
             }
 
@@ -2867,6 +2883,7 @@ define([
           }
             if(value != undefined){
                 if(typeof value === 'object' && value.constructor !== Array && Object.keys(value).length == 0){
+                    r[k] = {};
                 }else{
                    r[k] = value;
                 }
